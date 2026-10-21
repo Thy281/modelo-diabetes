@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score
 
 import pandas as pd
 
-df = pd.read_excel("dados/dados_diabetes.xlsx")
+df = pd.read_excel("dados/dados_diabetes_100.xlsx")
 linhas_antes = len(df)
 df.drop_duplicates()
 print(f"Duplicatas removidas: {linhas_antes - len(df)}")
