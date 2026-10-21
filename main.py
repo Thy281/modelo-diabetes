@@ -9,7 +9,9 @@ from sklearn.metrics import accuracy_score
 import pandas as pd
 
 df = pd.read_excel("dados/dados_diabetes.xlsx")
+linhas_antes = len(df)
 df.drop_duplicates()
+print(f"Duplicatas removidas: {linhas_antes - len(df)}")
 # %%
 
 fetures = [
@@ -31,12 +33,16 @@ X_treino, X_teste, y_treino, y_teste = train_test_split(
     stratify = y,
 )
 
+print(f"Dados carregados: {len(df)}")
+print(f"Dados de treino: {len(X_treino)}")
+print(f"Dados de teste: {len(X_teste)}")
+print(f"Casos na matriz: {len(y_teste)}")
+
 model = BernoulliNB()
 model.fit(X_treino, y_treino)
 
 predict = model.predict(X_teste)
 accuracy = accuracy_score(y_teste, predict)
-print(f"Acurácia: {accuracy:.2%}")
 
 # %%
 
