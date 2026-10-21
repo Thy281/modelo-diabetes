@@ -41,16 +41,28 @@ print(f"Acurácia: {accuracy:.2%}")
 # %%
 
 import matplotlib.pyplot as plt
-from sklearn.metrics import ConfusionMatrixDisplay
+from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
 
-ConfusionMatrixDisplay.from_predictions(
-    y_teste,
-    predict,
+valores_matriz = confusion_matrix(y_teste, predict, labels = [0, 1]).T
+matriz = ConfusionMatrixDisplay(
+    confusion_matrix = valores_matriz,
     display_labels = ["Sem diabetes", "Com diabetes"],
+)
+matriz.plot(
     cmap = "Blues",
+    values_format = "d",
+    colorbar = False,
 )
 
-plt.title("Matriz de confusão")
+matriz.ax_.set_title(f"Matriz de confusão\nAcurácia: {accuracy:.2%}")
+matriz.ax_.xaxis.set_label_position("top")
+matriz.ax_.xaxis.tick_top()
+matriz.ax_.set_xlabel("Classe real")
+matriz.ax_.yaxis.set_label_position("left")
+matriz.ax_.yaxis.tick_left()
+matriz.ax_.set_ylabel("Classe prevista pelo modelo")
+plt.figtext(0.5, 0.01, "Diagonal = acertos | Fora da diagonal = erros", ha="center")
+plt.tight_layout(rect = [0, 0.04, 1, 1])
 plt.show()
 
 # %%
