@@ -1,0 +1,6 @@
+pandas
+scikit-learn
+scipy==1.17.1
+matplotlib
+openpyxl
+ipykernel

@@ -1,2 +1,4 @@
 __pycache__/
 modelo_diabetes.joblib
+.venv/
+.uv-cache/
