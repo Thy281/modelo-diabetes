@@ -6,7 +6,18 @@ from sklearn.model_selection import StratifiedKFold, cross_val_score
 from sklearn.naive_bayes import GaussianNB
 
 import pandas as pd
-from diabetes_model.config import FEATURES
+
+FEATURES = [
+    "idade",
+    "imc",
+    "glicemia",
+    "sede_excessiva",
+    "urina_frequente",
+    "fadiga",
+    "historico_familiar",
+    "atividade_fisica",
+    "pressao_sistolica",
+]
 
 df = pd.read_excel("dados/dados_diabetes.xlsx")
 linhas_antes = len(df)
