@@ -6,25 +6,16 @@ from sklearn.model_selection import StratifiedKFold, cross_val_score
 from sklearn.naive_bayes import GaussianNB
 
 import pandas as pd
+from diabetes_model.config import FEATURES
 
-df = pd.read_excel("dados/dados_diabetes_1000.xlsx")
+df = pd.read_excel("dados/dados_diabetes.xlsx")
 linhas_antes = len(df)
 df = df.drop_duplicates()
 print(f"Duplicatas removidas: {linhas_antes - len(df)}")
 
 # %%
 
-features = [
-    "idade",
-    "imc",
-    "glicemia",
-    "sede_excessiva",
-    "urina_frequente",
-    "fadiga",
-    "historico_familiar",
-    "atividade_fisica",
-    "pressao_sistolica",
-]
+features = FEATURES
 
 X = df[features]
 y = df["diabetes"]
@@ -59,8 +50,6 @@ recalls_gau = cross_val_score(
     cv = cv,
     scoring = "recall"
 )
-
-print("==========")
 
 print("Acurácias por divisão GaussianNB:", scores_gau)
 print(f"Acurácia média GaussianNB: {scores_gau.mean():.2%}")
